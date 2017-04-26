@@ -54,7 +54,6 @@ dependencies:
     - sudo a2ensite AshdayTest1
     - sudo service apache2 restart
 
-
 test:
   override:
     - behat
