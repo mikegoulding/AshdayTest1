@@ -55,14 +55,5 @@ dependencies:
   post:
     - terminus auth:login --machine-token="$TERMINUS_TOKEN"
     - terminus env:wake -n "$TERMINUS_SITE.dev"
-    - terminus multidev:create "$TERMINUS_SITE.dev" "$TERMINUS_ENV"
-
-test:
-  override:
-    - behat
-
-deployment:
-  build-assets:
-    branch: master
-    commands:
-      - git push origin
+    - terminus build-env:create "$TERMINUS_SITE.dev" "$TERMINUS_ENV"
+    - terminus build-env:push-code "$TERMINUS_SITE"."$TERMINUS_ENV"
