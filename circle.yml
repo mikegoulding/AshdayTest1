@@ -47,12 +47,9 @@ dependencies:
     - composer create-project -n -d ~/.terminus/plugins pantheon-systems/terminus-secrets-plugin:^1
   post:
     - terminus auth:login --machine-token="$TERMINUS_TOKEN"
-    - terminus build-env:delete:ci -n "$TERMINUS_SITE" --keep=2 --yes
+    - terminus multidev:delete "$TERMINUS_SITE"."$TERMINUS_ENV"
     - terminus env:wake -n "$TERMINUS_SITE.dev"
-    - terminus build-env:create -n "$TERMINUS_SITE.dev" "$TERMINUS_ENV" --yes --notify="$NOTIFY"
-    - sudo cp ~/testing/AshdayTest1 /etc/apache2/sites-available
-    - sudo a2ensite AshdayTest1
-    - sudo service apache2 restart
+    - terminus multidev:create "$TERMINUS_SITE.dev" "$TERMINUS_ENV"
 
 test:
   override:
