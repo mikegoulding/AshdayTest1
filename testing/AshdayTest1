@@ -1,0 +1,11 @@
+Listen 8080
+
+<VirtualHost *:8080>
+  LoadModule php5_module /opt/circleci/php/PHP_VERSION/usr/lib/apache2/modules/libphp5.so 
+
+  DocumentRoot /home/ubuntu/AshdayTest1/server-root
+  ServerName ashdaytest1.loc
+  <FilesMatch \.php$>
+    SetHandler application/x-httpd-php
+  </FilesMatch>
+</VirtualHost>
