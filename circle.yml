@@ -47,7 +47,6 @@ dependencies:
     - composer create-project -n -d ~/.terminus/plugins pantheon-systems/terminus-secrets-plugin:^1
   post:
     - terminus auth:login --machine-token="$TERMINUS_TOKEN"
-    - terminus multidev:delete "$TERMINUS_SITE"."$TERMINUS_ENV"
     - terminus env:wake -n "$TERMINUS_SITE.dev"
     - terminus multidev:create "$TERMINUS_SITE.dev" "$TERMINUS_ENV"
 
