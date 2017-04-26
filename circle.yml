@@ -48,9 +48,12 @@ dependencies:
   post:
     - terminus auth:login --machine-token="$TERMINUS_TOKEN"
     - terminus build-env:delete:ci -n "$TERMINUS_SITE" --keep=2 --yes
-    - composer -n build-assets
     - terminus env:wake -n "$TERMINUS_SITE.dev"
     - terminus build-env:create -n "$TERMINUS_SITE.dev" "$TERMINUS_ENV" --yes --notify="$NOTIFY"
+    - sudo cp ~/testing/AshdayTest1 /etc/apache2/sites-available
+    - sudo a2ensite AshdayTest1
+    - sudo service apache2 restart
+
 
 test:
   override:
